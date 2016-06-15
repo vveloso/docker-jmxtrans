@@ -6,7 +6,7 @@ ARG HTTPS_PROXY
 RUN set -x \
 	&& export http_proxy=$HTTP_PROXY \
 	&& export https_proxy=$HTTPS_PROXY \
-	&& apk --update add curl ca-certificates bash \
+	&& apk --update add libc6-compat libstdc++ curl ca-certificates bash  \
 	&& mkdir /opt /opt/jmxtrans /opt/jmxtrans/conf /opt/jmxtrans/log /opt/jmxtrans/ext \
 	&& curl -L -o /opt/jmxtrans/jmxtrans-all.jar http://central.maven.org/maven2/org/jmxtrans/jmxtrans/256/jmxtrans-256-all.jar \
 	&& curl -L -o /opt/jmxtrans/ext/wildfly-client.jar http://central.maven.org/maven2/org/wildfly/wildfly-client-all/10.0.0.Final/wildfly-client-all-10.0.0.Final.jar \
