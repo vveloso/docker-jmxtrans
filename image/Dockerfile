@@ -7,12 +7,12 @@ RUN set -x \
 	&& export http_proxy=$HTTP_PROXY \
 	&& export https_proxy=$HTTPS_PROXY \
 	&& apk --update add libc6-compat libstdc++ curl ca-certificates bash  \
-	&& mkdir /opt /opt/jmxtrans /opt/jmxtrans/conf /opt/jmxtrans/log /opt/jmxtrans/ext \
+	&& mkdir /opt /opt/jmxtrans /opt/jmxtrans/conf /opt/jmxtrans/log \
 	&& curl -L -o /opt/jmxtrans/jmxtrans-all.jar http://central.maven.org/maven2/org/jmxtrans/jmxtrans/256/jmxtrans-256-all.jar \
-	&& curl -L -o /opt/jmxtrans/ext/wildfly-client.jar http://central.maven.org/maven2/org/wildfly/wildfly-client-all/10.0.0.Final/wildfly-client-all-10.0.0.Final.jar \
-	&& curl -L -o /opt/jmxtrans/ext/log4j.jar http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar \
-	&& curl -L -o /opt/jmxtrans/ext/slf4j-log4j12.jar http://central.maven.org/maven2/org/slf4j/slf4j-log4j12/1.7.21/slf4j-log4j12-1.7.21.jar \
-	&& curl -L -o /opt/jmxtrans/ext/jmxtrans-output-elastic-aggregate-1.3.jar http://repo1.maven.org/maven2/com/github/vveloso/jmxtrans-output-elastic-aggregate/1.3/jmxtrans-output-elastic-aggregate-1.3-jar-with-dependencies.jar
+	&& curl -L -o /opt/jmxtrans/log4j.jar http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar \
+	&& curl -L -o /opt/jmxtrans/jmxtrans-output-elastic.jar http://repo1.maven.org/maven2/com/github/vveloso/jmxtrans-output-elastic-aggregate/1.4/jmxtrans-output-elastic-aggregate-1.4-full-jar.jar
+	
+ADD ./wildfly-ejb-client-10.0.0.Final.01.jar /opt/jmxtrans/wildfly-ejb-client.jar
 
 VOLUME /opt/jmxtrans/conf 
 VOLUME /opt/jmxtrans/log
